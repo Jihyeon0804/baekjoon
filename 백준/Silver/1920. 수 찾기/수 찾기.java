@@ -1,8 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
@@ -11,12 +10,11 @@ public class Main {
 
         int n = Integer.parseInt(br.readLine());
         String[] arr1 = br.readLine().split(" ");
-        Map<Integer, Integer> map = new HashMap<>();
-        for (String string : arr1) {
-            map.put(Integer.parseInt(string), Integer.parseInt(string));
-        }
 
-        Set<Integer> set = map.keySet();
+        Set<Integer> set = new HashSet<>();
+        for (String s : arr1) {
+            set.add(Integer.parseInt(s));
+        }
 
         int m = Integer.parseInt(br.readLine());
         String[] arr2 = br.readLine().split(" ");
