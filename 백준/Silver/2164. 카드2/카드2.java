@@ -18,9 +18,7 @@ public class Main {
 
         while (queue.size() > 1) {
             queue.poll();
-            int temp = queue.peek();
-            queue.poll();
-            queue.add(temp);
+            queue.add(queue.poll());
         }
 
         System.out.println(queue.peek());
