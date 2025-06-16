@@ -1,50 +1,42 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class Main {
+    private static final Map<Character, Character> map = new HashMap<>();
+    static {
+        map.put(')', '(');
+        map.put(']', '[');
+    }
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int i = 0; true; i++) {
+        while (true) {
             String s = br.readLine();
             if (s.equals(".")) {
                 break;
             }
             System.out.println(isBalanced(s));
-
         }
     }
 
     public static String isBalanced(String s) {
-        Map<String, String> map = new HashMap<>();
-        map.put(")", "(");
-        map.put("]", "[");
-
-        s = s.replaceAll("[^()\\[\\]]", "");
-        Stack<String> stack = new Stack<>();
+        Deque<Character> stack = new ArrayDeque<>();
 
         for (char ch : s.toCharArray()) {
-            String str = String.valueOf(ch);
-            if (map.containsKey(str)) {
-                if (!stack.isEmpty() && stack.peek().equals(map.get(str))) {
+            if (ch == '(' || ch == '[') {
+                stack.push(ch);
+            } else if (ch == ')' || ch == ']') {
+                if (!stack.isEmpty() && stack.peek() == map.get(ch)) {
                     stack.pop();
                 } else {
-                    stack.add(str);
+                    return "no";
                 }
-            } else {
-                stack.add(str);
             }
         }
 
-        if (stack.isEmpty()) {
-            return "yes";
-        } else {
-            return "no";
-        }
+        return stack.isEmpty() ? "yes" : "no";
     }
 }
