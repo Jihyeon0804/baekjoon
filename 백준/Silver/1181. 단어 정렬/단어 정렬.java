@@ -10,11 +10,7 @@ public class Main {
 
         int n = Integer.parseInt(br.readLine());
 
-        String[] arr = new String[n];
-        for (int i = 0; i < n; i++) {
-           arr[i] = br.readLine();
-        }
-        Arrays.sort(arr, (o1, o2) -> {
+        Set<String> treeSet = new TreeSet<>((o1, o2) -> {
             if (o1.length() != o2.length()) {
                 return o1.length() - o2.length();
 
@@ -23,10 +19,11 @@ public class Main {
             }
         });
 
-        // 순서 유지하면서 중복 제거
-        Set<String> set = new LinkedHashSet<>(Arrays.asList(arr));
+        for (int i = 0; i < n; i++) {
+            treeSet.add(br.readLine());
+        }
 
-        for (String s : set) {
+        for (String s : treeSet) {
             System.out.println(s);
         }
     }
