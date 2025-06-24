@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -14,16 +12,14 @@ public class Main {
 
         String[] arr = new String[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = br.readLine();
+           arr[i] = br.readLine();
         }
+        Arrays.sort(arr, (o1, o2) -> {
+            if (o1.length() != o2.length()) {
+                return o1.length() - o2.length();
 
-        Arrays.sort(arr, (s1, s2) -> {
-            if (s1.length() != s2.length()) {
-                // 길이 순
-                return s1.length() - s2.length();
             } else {
-                // 사전 순
-                return s1.compareTo(s2); // 사전순 비교
+                return o1.compareTo(o2);
             }
         });
 
