@@ -6,10 +6,10 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        boolean[] visited = new boolean[arr[0] + 1];
         List<List<Integer>> adjList = new ArrayList<>();
 
         for (int i = 0; i <= arr[0]; i++) {
@@ -22,8 +22,8 @@ public class Main {
             adjList.get(nodes[1]).add(nodes[0]);
         }
 
-        for (List<Integer> integers : adjList) {
-            integers.sort(Comparator.naturalOrder());
+        for (int i = 1; i <= arr[0]; i++) {
+            adjList.get(i).sort(null);
         }
 
         int[] answer = new int[arr[0] + 1];
@@ -31,22 +31,21 @@ public class Main {
 
         Queue<Integer> myQueue = new LinkedList<>();
         myQueue.add(arr[2]);
-        visited[arr[2]] = true;
         answer[arr[2]] = cnt++;
 
         while (!myQueue.isEmpty()) {
             int temp = myQueue.poll();
             for (int a : adjList.get(temp)) {
-                if (!visited[a]) {
+                if (answer[a] == 0) {
                     myQueue.add(a);
-                    visited[a] = true;
                     answer[a] = cnt++;
                 }
             }
         }
 
         for (int i = 1; i <= arr[0]; i++) {
-            System.out.println(answer[i]);
+            sb.append(answer[i]).append("\n");
         }
+        System.out.print(sb);
     }
 }
