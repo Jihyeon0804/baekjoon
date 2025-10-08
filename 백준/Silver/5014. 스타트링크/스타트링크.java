@@ -4,6 +4,11 @@ import java.util.*;
 public class Main {
 
     static int[] visited;
+    static int f;
+    static int s;
+    static int g;
+    static int u;
+    static int d;
 
     public static void main(String[] args) throws IOException {
 
@@ -11,18 +16,18 @@ public class Main {
 
         int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        int f = arr[0];
-        int s = arr[1];
-        int g = arr[2];
-        int u = arr[3];
-        int d = arr[4];
+        f = arr[0];
+        s = arr[1];
+        g = arr[2];
+        u = arr[3];
+        d = arr[4];
 
         visited = new int[f + 1];
 
-        bfs(f, s, g, u, d);
+        bfs();
     }
 
-    static void bfs(int f, int s, int g, int u, int d) {
+    static void bfs() {
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(s);
         visited[s] = 1;
