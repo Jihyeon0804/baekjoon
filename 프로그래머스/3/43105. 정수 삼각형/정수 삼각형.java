@@ -14,8 +14,6 @@ class Solution {
             }
         }
         
-        Arrays.sort(triangle[triangle.length - 1]);
-        
-        return triangle[triangle.length - 1][triangle[triangle.length - 1].length - 1];
+        return Arrays.stream(triangle[triangle.length - 1]).max().getAsInt();
     }
 }
