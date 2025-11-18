@@ -16,6 +16,8 @@ class Solution {
                     cnt++;
                 } else if (timelogs[i][j] <= schedules[i]) {
                     cnt++;
+                } else {
+                    break;
                 }
 
             }
